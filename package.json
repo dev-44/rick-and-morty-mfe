@@ -1,0 +1,40 @@
+{
+  "name": "rick-and-morty-mfe",
+  "private": true,
+  "workspaces": [
+    "components-library",
+    "mfe-shell",
+    "mfe-characters"
+  ],
+  "scripts": {
+    "dev": "yarn dev:setup && concurrently \"yarn dev:characters\" \"yarn dev:shell\"",
+
+    "dev:setup": "yarn dev:build-library && yarn dev:link",
+    "dev:build-library": "cd components-library && yarn build-tsup && yarn link",
+    
+    "dev:link": "yarn dev:link-characters && yarn dev:link-shell",
+    "dev:link-characters": "cd mfe-characters && yarn link components-library",
+    "dev:link-shell": "cd mfe-shell && yarn link components-library",
+
+    "dev:characters": "cd mfe-characters && yarn dev --port 5001",
+    "dev:shell": "cd mfe-shell && yarn dev --port 3000",
+
+    "clean": "yarn clean:library && yarn clean:characters && yarn clean:shell",
+
+    "clean:library": "cd components-library && yarn clean",
+    "clean:characters": "cd mfe-characters && yarn clean",
+    "clean:shell": "cd mfe-shell && yarn clean",
+
+    "test": "yarn test:library && yarn test:characters",
+
+    "test:library": "cd components-library && yarn test",
+    "test:characters": "cd mfe-characters && yarn test",
+
+    "dev-ps": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-setup.ps1",
+    "test-ps": "powershell -ExecutionPolicy Bypass -File ./scripts/test-all.ps1",
+    "clean-ps": "powershell -ExecutionPolicy Bypass -File ./scripts/clean-all.ps1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "characterCard": {
+    "title": "Character Card",
+    "lastKnownLocation": "Last known location:",
+    "firstSeenIn": "First seen in:",
+    "status": {
+      "alive": "Alive",
+      "dead": "Dead",
+      "unknown": "Unknown"
+    }
+  },
+  "app": {
+    "title": "Character Cards",
+    "description": "Component Library - Character Card Component",
+    "characters": "characters available",
+    "changeLanguage": "Change Language",
+    "addCharacter": "Add Character",
+    "noCharacters": "No characters available",
+    "selectCharacter": "Select character",
+    "loading": "Loading...",
+    "error": "Error loading characters"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit"
+  }
+}

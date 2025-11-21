@@ -1,0 +1,106 @@
+# ──────────────────────────────────────────────
+#  Node
+# ──────────────────────────────────────────────
+node_modules/
+*/node_modules/
+
+# ──────────────────────────────────────────────
+#  Build outputs
+# ──────────────────────────────────────────────
+dist/
+*/dist/
+components-library/dist/
+mfe-shell/dist/
+mfe-characters/dist/
+
+# Tsup build artifacts
+*.d.ts
+*.js.map
+
+# ──────────────────────────────────────────────
+#  Vite cache
+# ──────────────────────────────────────────────
+.vite/
+*/.vite/
+
+# ──────────────────────────────────────────────
+#  Test coverage
+# ──────────────────────────────────────────────
+coverage/
+*/coverage/
+
+# Vitest cache
+.vitest/
+*/.vitest/
+
+# ──────────────────────────────────────────────
+#  Environment files
+# ──────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ──────────────────────────────────────────────
+#  Logs & debug
+# ──────────────────────────────────────────────
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+logs/
+*.log
+
+# ──────────────────────────────────────────────
+#  OS generated files
+# ──────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+Thumbs.db
+desktop.ini
+
+# ──────────────────────────────────────────────
+#  Editor folders
+# ──────────────────────────────────────────────
+# VSCode workspace settings (global only)
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+
+# JetBrains IDEs
+.idea/
+
+# ──────────────────────────────────────────────
+# Yarn
+# ──────────────────────────────────────────────
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/patches
+!.yarn/sdks
+.pnp.*
+.yarnrc.yml
+
+# ──────────────────────────────────────────────
+#  Cache & temporary
+# ──────────────────────────────────────────────
+.tmp/
+temp/
+tmp/
+.cache/
+*/.cache/
+
+# ──────────────────────────────────────────────
+#  Local scripts (si generas .ps1 temporales)
+# ──────────────────────────────────────────────
+scripts/*.log
+scripts/*.tmp
+
+# ──────────────────────────────────────────────
+#  Misc
+# ──────────────────────────────────────────────
+*.local
+*.bak
+*.swp
+*.swo

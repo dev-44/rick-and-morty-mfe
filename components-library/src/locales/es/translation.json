@@ -1,0 +1,32 @@
+{
+  "characterCard": {
+    "title": "Tarjeta de Personaje",
+    "lastKnownLocation": "Last known location",
+    "firstSeenIn": "First seen in",
+    "status": {
+      "alive": "Vivo",
+      "dead": "Muerto",
+      "unknown": "Desconocido"
+    }
+  },
+  "app": {
+    "title": "Tarjetas de Personajes",
+    "description": "Librería de componentes - Character Card Component",
+    "characters": "personajes disponibles",
+    "changeLanguage": "Cambiar idioma",
+    "addCharacter": "Agregar Personaje",
+    "noCharacters": "No hay personajes disponibles",
+    "selectCharacter": "Seleccionar personaje",
+    "loading": "Cargando...",
+    "error": "Error al cargar personajes"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar"
+  }
+}
