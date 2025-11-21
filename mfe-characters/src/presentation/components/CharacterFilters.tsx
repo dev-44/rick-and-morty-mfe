@@ -14,7 +14,7 @@ export const CharacterFilters: React.FC = () => {
     const navigate = useNavigate();
 
    const handleSearch = () => {
-    if (!localName) return;
+    // if (!localName) return;
     setName(localName);
     setPage(1);      // Reiniciar paginación
   };

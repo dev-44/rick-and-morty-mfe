@@ -16,7 +16,7 @@ export const backgroundImageSx: SxProps<Theme> = {
   height: "100%",
   objectFit: "cover",
   objectPosition: "center 30%",
-  filter: "brightness(0.5)",
+  filter: "brightness(0.8)",
   zIndex: 0,
 };
 
@@ -41,4 +41,15 @@ export const searchWrapperSx: SxProps<Theme> = {
   width: "100%",
   maxWidth: 800,
   mt: 2,
+};
+
+export const searchIconSx: SxProps<Theme> = {
+  cursor: "pointer",
+};
+
+export const textFieldSx: SxProps<Theme> = {
+  borderRadius: "12px",
+  backgroundColor: "rgba(0,0,0,0.45)",
+  color: "#fff",
+  "&::placeholder": { color: "#ccc" },
 };

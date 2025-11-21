@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, TextField, InputAdornment } from "@mui/material";
-import { FaSearch } from "react-icons/fa";
 
 import {
   headerContainerSx,
@@ -8,10 +7,13 @@ import {
   contentWrapperSx,
   logoSx,
   searchWrapperSx,
+  searchIconSx,
+  textFieldSx
 } from "./HomeHeader.styles";
 
 const headerBg = new URL("../../../assets/header-bg.svg", import.meta.url).href;
 const logo = new URL("../../../assets/logo.svg", import.meta.url).href;
+const searchIcon = new URL("../../../assets/glass-icon.svg", import.meta.url).href;
 
 interface HomeHeaderProps {
   search?: string;
@@ -43,7 +45,6 @@ export const HomeHeader: React.FC<HomeHeaderProps> = ({
             placeholder="Buscar personaje por nombre"
             value={search}
             onChange={(e) => onSearchChange?.(e.target.value)}
-            on
             slotProps={{
               input: {
                 onKeyDown: (e) => {
@@ -52,22 +53,11 @@ export const HomeHeader: React.FC<HomeHeaderProps> = ({
                 }
               },
                 startAdornment: (
-                  <InputAdornment position="start">
-                    <FaSearch onClick={handleSearch} />
+                  <InputAdornment position="start" onClick={handleSearch} >
+                    <Box component="img" src={searchIcon} alt="Search Icon" sx={searchIconSx} />
                   </InputAdornment>
                 ),
-                sx: {
-                  borderRadius: "12px",
-                  backgroundColor: "rgba(0,0,0,0.45)",
-                  color: "#fff",
-                  "&::placeholder": { color: "#ccc" },
-                },
-              },
-              textField: {
-                sx: {
-                  "& fieldset": { borderColor: "rgba(255,255,255,0.3)" },
-                  "&:hover fieldset": { borderColor: "#fff" },
-                },
+                sx: textFieldSx,
               },
             }}
           />

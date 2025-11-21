@@ -206,3 +206,7 @@ Se incluyen scripts para Windows:
 Ejecutan exactamente lo mismo que sus equivalentes root pero con manejo extra de logs y errores.
 
 ---
+
+> ⚠️ Si por alguna razon alguna de las paginas no muestra el contenido, presionar reload en el navegador.
+
+---
