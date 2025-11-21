@@ -92,7 +92,7 @@ tmp/
 */.cache/
 
 # ──────────────────────────────────────────────
-#  Local scripts (si generas .ps1 temporales)
+#  Local scripts
 # ──────────────────────────────────────────────
 scripts/*.log
 scripts/*.tmp
