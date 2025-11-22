@@ -12,6 +12,8 @@ dist/
 components-library/dist/
 mfe-shell/dist/
 mfe-characters/dist/
+.mf_temp/
+__mf_temp/
 
 # Tsup build artifacts
 *.d.ts
@@ -104,3 +106,6 @@ scripts/*.tmp
 *.bak
 *.swp
 *.swo
+
+# TS incremental cache
+*.tsbuildinfo

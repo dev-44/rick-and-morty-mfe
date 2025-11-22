@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { CharacterFilters as CharacterFiltersComponent } from "../components/CharacterFilters";
 import { CharactersGrid } from "../components/CharactersGrid";
-
 import { useCharacterFiltersStore } from "../state/characterFilters.store";
 import { useSelectedCharacterStore } from "../state/selectedCharacter.store";
-
 import { fetchCharacterCardDataUseCase } from "../../application/usecases/fetchCharacterCardDataUseCase";
 import { HttpCharacterRepository } from "../../infraestructure/repositories/HttpCharacterRepository";
 import { HttpEpisodeRepository } from "../../infraestructure/repositories/HttpEpisodeRepository";
-
 import type { CharacterCardData } from "../../domain/dto/CharacterCardData";
 import type { CharacterFilters as CharacterFiltersVO } from "../../domain/value-objects/CharacterFilters";
 
@@ -42,7 +39,11 @@ export const CharactersPage: React.FC = () => {
 
       setCharacters(data);
     } catch (e) {
-      setError(`Error al cargar personajes: ${e.message}`);
+      if (e instanceof Error) {
+        setError(`Error al cargar personajes: ${e.message}`);
+      } else {
+        setError("Error desconocido al cargar personajes");
+      }
     } finally {
       setLoading(false);
     }
@@ -61,11 +62,7 @@ export const CharactersPage: React.FC = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {!loading && !error && (
-        <CharactersGrid
-          characters={characters}
-          selectedId={selected?.id}
-          onSelect={select}
-        />
+        <CharactersGrid characters={characters} selectedId={selected?.id} onSelect={select} />
       )}
     </div>
   );

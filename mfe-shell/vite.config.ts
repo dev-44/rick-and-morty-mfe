@@ -45,4 +45,13 @@ export default defineConfig({
   resolve: {
     preserveSymlinks: true,
   },
+  preview: {
+    port: 3000,
+    strictPort: true,
+    cors: {
+      origin: "*",
+      methods: ["GET"],
+      allowedHeaders: ["*"],
+    },
+  },
 });

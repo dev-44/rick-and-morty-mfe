@@ -52,4 +52,13 @@ export default defineConfig({
   resolve: {
     preserveSymlinks: true,
   },
+  preview: {
+    port: 5001,
+    strictPort: true,
+    cors: {
+      origin: "*",
+      methods: ["GET"],
+      allowedHeaders: ["*"],
+    },
+  },
 });
