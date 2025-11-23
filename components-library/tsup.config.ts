@@ -1,18 +1,13 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: [
-    "src/index.ts",
-    "src/shared/theme/ThemeProvider.tsx",
-    "src/shared/theme/theme.ts",
-    "src/i18n/config.ts",
-  ],
-  format: ["cjs", "esm"],
+  entry: ["src/index.ts"],
+  format: ["esm", "cjs"],
   dts: true,
-  sourcemap: true,
+  sourcemap: false,
   clean: true,
   minify: false,
-  splitting: false,
-  external: ["react", "react-dom"],
-  tsconfig: "tsconfig.build.json",
+  outDir: "dist",
+  bundle: true,
+  external: ["react", "react-dom", "@mui/material", "@emotion/react", "@emotion/styled"],
 });

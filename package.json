@@ -7,8 +7,9 @@
     "mfe-characters"
   ],
   "scripts": {
-    "dev": "concurrently -c auto \"yarn --cwd components-library dev\" \"yarn --cwd mfe-characters dev\" \"yarn --cwd mfe-shell dev\"",
-    "clean": "rimraf node_modules && rimraf components-library/node_modules && rimraf mfe-characters/node_modules && rimraf mfe-shell/node_modules",
+    "dev": "yarn --cwd components-library build && concurrently \"yarn --cwd mfe-characters dev\" \"yarn --cwd mfe-shell dev\"",
+    "clean": "rm -rf node_modules components-library/node_modules mfe-characters/node_modules mfe-shell/node_modules components-library/dist mfe-characters/dist mfe-shell/dist components-library/src/**/*.js components-library/src/**/*.js.map components-library/__mf__temp components-library/.mf_temp components-library/.vite mfe-shell/__mf__temp mfe-shell/.mf_temp mfe-shell/.vite mfe-characters/__mf__temp mfe-characters/.mf_temp mfe-characters/.vite",
+    "reset": "yarn clean && yarn install",
     "test": "yarn --cwd components-library test && yarn --cwd mfe-characters test",
     "dev-ps": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-setup.ps1",
     "test-ps": "powershell -ExecutionPolicy Bypass -File ./scripts/test-all.ps1",
