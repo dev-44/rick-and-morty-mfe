@@ -18,7 +18,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsup && tsc -p tsconfig.build.json",
     "build-tsup": "tsup",
     "lint": "eslint .",
     "preview": "vite preview",
