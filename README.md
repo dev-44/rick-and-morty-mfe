@@ -135,7 +135,7 @@ yarn dev
 
 Ejecuta automáticamente:
 
-- build + link de la components-library
+- build de la libreria components-library
 - levanta:
   - `mfe-characters` → :5001
   - `mfe-shell` → :3000
