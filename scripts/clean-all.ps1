@@ -1,70 +1,47 @@
-﻿# ==================================================
-# 🧹 CLEAN-ALL.ps1 (DEV SAFE - FINAL VERSION)
-# ==================================================
+﻿Write-Host "=== 🧹 CLEAN ALL — Limpieza total + cierre de puertos ===`n"
 
-$start = Get-Date
+# ---------------------------
+# 1. CERRAR PUERTOS DE DEV Y PROD DE FORMA SEGURA
+# ---------------------------
 
-Write-Host "========================================" -ForegroundColor Cyan
-Write-Host " 🧹 CLEANING ENVIRONMENT (DEV SAFE)" -ForegroundColor Cyan
-Write-Host "========================================"
-Write-Host ""
+$ports = @(3000, 5001, 4173, 5173)
 
-# ==================================================
-# 1) FREE PORTS 3000 & 5001
-# ==================================================
+foreach ($port in $ports) {
+    Write-Host "🔌 Cerrando puerto $port si está en uso..."
+    $pids = Get-NetTCPConnection -LocalPort $port -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique
 
-function Stop-Port {
-    param ([int]$Port)
-
-    Write-Host "🔎 Revisando puerto $Port..." -ForegroundColor Yellow
-
-    # Buscar SOLO procesos que estén "LISTENING" en ese puerto
-    $connections = netstat -ano | Select-String "LISTENING" | Select-String ":$Port "
-
-    if ($connections) {
-        foreach ($conn in $connections) {
-            $parts = $conn.ToString() -split "\s+"
-            $procId = $parts[-1]
-
-            if ($procId -match '^\d+$' -and $procId -ne $PID) {
-                Write-Host "   🛑 Terminando PID $procId..." -ForegroundColor Red
-                Stop-Process -Id $procId -Force -ErrorAction SilentlyContinue
-            }
+    foreach ($pid in $pids) {
+        try {
+            Write-Host "   ➜ Finalizando proceso PID $pid"
+            Stop-Process -Id $pid -Force -ErrorAction SilentlyContinue
+        } catch {
+            Write-Host "   ⚠ No se pudo cerrar PID $pid (quizás ya terminó)"
         }
-    } else {
-        Write-Host "   ✔ Puerto $Port libre." -ForegroundColor Green
     }
 }
 
-Stop-Port -Port 3000
-Stop-Port -Port 5001
-Write-Host ""
+Write-Host "`n✔ Puertos liberados.`n"
 
-# ==================================================
-# 2) REMOVE dist AND .vite ONLY (SAFE CLEAN)
-# ==================================================
 
-$paths = @(
-  "components-library/dist",
-  "mfe-shell/dist",
-  "mfe-shell/node_modules/.vite",
-  "mfe-characters/dist",
-  "mfe-characters/node_modules/.vite"
-)
+# ---------------------------
+# 2. LIMPIEZA DE DIRECTORIOS
+# ---------------------------
 
-foreach ($p in $paths) {
-  if (Test-Path $p) {
-    Write-Host "   🗑 Eliminando $p ..." -ForegroundColor Red
-    Remove-Item $p -Recurse -Force -ErrorAction SilentlyContinue
-  } else {
-    Write-Host "   ✔ $p no existe." -ForegroundColor Green
-  }
-}
+# Root
+Write-Host "🗑 Eliminando node_modules del root..."
+Remove-Item -Recurse -Force node_modules -ErrorAction SilentlyContinue
 
-Write-Host ""
-$duration = (Get-Date) - $start
+# Components Library
+Write-Host "🗑 components-library..."
+Remove-Item -Recurse -Force components-library/node_modules, components-library/dist, components-library/__mf__temp, components-library/.mf_temp, components-library/.vite -ErrorAction SilentlyContinue
+Get-ChildItem -Path components-library/src -Recurse -Include *.js, *.js.map | Remove-Item -Force
 
-Write-Host "========================================" -ForegroundColor Cyan
-Write-Host " ✨ CLEAN COMPLETE (DEV SAFE)" -ForegroundColor Cyan
-Write-Host " ⏱ Tiempo: $($duration.TotalSeconds) segundos" -ForegroundColor Gray
-Write-Host "========================================"
+# MFE Characters
+Write-Host "🗑 mfe-characters..."
+Remove-Item -Recurse -Force mfe-characters/node_modules, mfe-characters/dist, mfe-characters/__mf__temp, mfe-characters/.mf_temp, mfe-characters/.vite -ErrorAction SilentlyContinue
+
+# MFE Shell
+Write-Host "🗑 mfe-shell..."
+Remove-Item -Recurse -Force mfe-shell/node_modules, mfe-shell/dist, mfe-shell/__mf__temp, mfe-shell/.mf_temp, mfe-shell/.vite -ErrorAction SilentlyContinue
+
+Write-Host "`n🎉 Limpieza completa y puertos liberados."

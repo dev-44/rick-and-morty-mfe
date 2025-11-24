@@ -1,32 +1,18 @@
-﻿Write-Host "=== 🔧 DEV SETUP — Entorno de desarrollo ==="
+﻿Write-Host "=== 🚀 DEV SETUP — Entorno de desarrollo ===`n"
 
-# 1) Build de la librería (NO reinstalar, NO unlink)
-Write-Host '📦 Building components-library...'
+# 1) Build de la librería (tsup + types)
+Write-Host "📦 Build components-library..."
 Set-Location components-library
-yarn build-tsup
-yarn link
+yarn build
 
-# 2) Asegurar link en mfe-characters
-Write-Host '🔗 Linking components-library → mfe-characters'
-Set-Location ../mfe-characters
-yarn link 'components-library'
+# 2) Volver al root
+Set-Location ..
 
-# 3) Asegurar link en mfe-shell
-Write-Host '🔗 Linking components-library → mfe-shell'
-Set-Location ../mfe-shell
-yarn link 'components-library'
+# 3) Levantar microfrontends
+Write-Host "▶ Iniciando mfe-characters (http://localhost:5001)"
+Start-Process powershell -ArgumentList 'cd mfe-characters; yarn dev'
 
-Write-Host ""
-Write-Host "🚀 Levantando microfrontends..."
+Write-Host "▶ Iniciando mfe-shell (http://localhost:3000)"
+Start-Process powershell -ArgumentList 'cd mfe-shell; yarn dev'
 
-# 4) Start mfe-characters (DEV MODE)
-Write-Host '▶ mfe-characters → http://localhost:5001'
-Start-Process powershell -ArgumentList 'cd ../mfe-characters; yarn dev --port 5001'
-
-# 5) Start mfe-shell (DEV MODE)
-Write-Host '▶ mfe-shell → http://localhost:3000'
-Start-Process powershell -ArgumentList 'cd ../mfe-shell; yarn dev --port 3000'
-
-Write-Host ""
-Write-Host "🌐 Shell disponible en: http://localhost:3000"
-Write-Host "🎉 Dev setup completo."
+Write-Host "`n🎉 Ambiente de desarrollo listo."
