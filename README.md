@@ -81,6 +81,7 @@ Se priorizó:
 - Module Federation (`@module-federation/vite`)
 - React Router
 - Material UI (MUI) + Emotion
+- Tanstack
 - Zustand
 - Vitest + React Testing Library (tests unitarios en `mfe-characters` y `components-library`)
 - tsup
